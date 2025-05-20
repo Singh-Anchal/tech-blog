@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern blog about web development, design, and technology">
+  <title>CodeCanvas | Modern Web Development Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4362eeda;
+      --primary-dark: #3a56d4;
+      --secondary: #3e37c9a9;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --transition: all 0.3s ease;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+      padding: 0;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--primary-dark);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    
+    .logo span {
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: white;
+      color: var(--primary);
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Featured Post */
+    .featured {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+    }
+    
+    .featured-img {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .featured-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .featured-content {
+      flex: 1;
+      min-width: 300px;
+      padding: 2.5rem;
+    }
+    
+    .featured-content .meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .featured-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-content p {
+      margin-bottom: 2rem;
+      color: var(--gray);
+    }
+    
+    .read-more {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .read-more:hover {
+      gap: 1rem;
+    }
+    
+    /* Main Layout */
+    .main {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Article Grid */
+    .grid {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .post {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .post:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .post-img {
+      height: 200px;
+    }
+    
+    .post-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .post-content {
+      padding: 1.5rem;
+    }
+    
+    .post-content .meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+    
+    .post-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .post-content p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .box {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .box h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light-gray);
+    }
+    
+    .box ul {
+      list-style: none;
+    }
+    
+    .box li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .box a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .box a:hover {
+      color: var(--primary);
+      gap: 1rem;
+    }
+    
+    .box a::before {
+      content: "→";
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .box a:hover::before {
+      opacity: 1;
+    }
+    
+    /* Newsletter Form */
+    .newsletter-form input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .newsletter-form button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-form button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .pagination button {
+      padding: 0.8rem 1.2rem;
+      border: 1px solid var(--light-gray);
+      background: white;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .pagination button:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .pagination button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .footer-links a {
+      color: white;
+    }
+    
+    .footer-links a:hover {
+      color: var(--light-gray);
+    }
+    
+    .copyright {
+      color: var(--light-gray);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        gap: 1.5rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .main {
+        flex-direction: column;
+      }
+      
+      .featured {
+        flex-direction: column;
+      }
+      
+      .featured-img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">Code<span>Canvas</span></a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="articles.html">Articles</a>
+          <a href="#">Categories</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Master Modern Web Development</h1>
+      <p>Learn the latest techniques, frameworks, and best practices from industry experts.</p>
+      <a href="#" class="btn">Browse Articles</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Featured Post -->
+    <article class="featured">
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Developer coding on laptop">
+      </div>
+      <div class="featured-content">
+        <div class="meta">
+          <span>June 15, 2023</span>
+          <span>•</span>
+          <span>Web Development</span>
+        </div>
+        <h2>The Complete Guide to React Performance Optimization</h2>
+        <p>Discover proven techniques to make your React applications faster and more efficient. Learn about code splitting, lazy loading, memoization, and other advanced optimization strategies.</p>
+        <a href="#" class="read-more">Read Full Article <span>→</span></a>
+      </div>
+    </article>
+
+    <!-- Main content and sidebar -->
+    <div class="main">
+      <!-- Article Grid -->
+      <div class="grid">
+        <article class="post">
+          <div class="post-img">
+            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="React logo">
+          </div>
+          <div class="post-content">
+            <div class="meta">
+              <span>June 10, 2023</span>
+              <span>•</span>
+              <span>Frontend</span>
+            </div>
+            <h3>React Hooks: Beyond the Basics</h3>
+            <p>Explore advanced React Hooks patterns and learn how to create custom hooks for reusable logic across your applications.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-img">
+            <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="CSS code">
+          </div>
+          <div class="post-content">
+            <div class="meta">
+              <span>June 5, 2023</span>
+              <span>•</span>
+              <span>CSS</span>
+            </div>
+            <h3>CSS Grid vs Flexbox: When to Use Each</h3>
+            <p>A comprehensive comparison of CSS Grid and Flexbox with practical examples of when to use each layout method.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-img">
+            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="JavaScript code">
+          </div>
+          <div class="post-content">
+            <div class="meta">
+              <span>May 28, 2023</span>
+              <span>•</span>
+              <span>JavaScript</span>
+            </div>
+            <h3>Modern JavaScript Patterns You Should Know</h3>
+            <p>Learn about essential JavaScript patterns including module pattern, observer pattern, and modern ES6+ features.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-img">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Data visualization">
+          </div>
+          <div class="post-content">
+            <div class="meta">
+              <span>May 20, 2023</span>
+              <span>•</span>
+              <span>Data</span>
+            </div>
+            <h3>Building Scalable APIs with Node.js</h3>
+            <p>Architectural patterns and best practices for building high-performance, maintainable APIs with Node.js and Express.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="box">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">CSS & Design</a></li>
+            <li><a href="#">Backend</a></li>
+            <li><a href="#">DevOps</a></li>
+            <li><a href="#">Career Advice</a></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h4>Popular Posts</h4>
+          <ul>
+            <li><a href="#">10 VS Code Extensions for Productivity</a></li>
+            <li><a href="#">TypeScript Best Practices</a></li>
+            <li><a href="#">The Complete Guide to CSS Variables</a></li>
+            <li><a href="#">Getting Started with Docker</a></li>
+            <li><a href="#">Building Accessible Web Apps</a></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h4>Newsletter</h4>
+          <p>Get the latest articles and resources sent straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button aria-label="Previous page">Previous</button>
+      <button class="active" aria-label="Page 1">1</button>
+      <button aria-label="Page 2">2</button>
+      <button aria-label="Page 3">3</button>
+      <button aria-label="Next page">Next</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <h2>CodeCanvas</h2>
+        <p>Master modern web development with our in-depth tutorials and articles.</p>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+        </div>
+        <p class="copyright">© 2023 CodeCanvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
